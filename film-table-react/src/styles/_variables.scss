@@ -1,0 +1,89 @@
+
+:root {
+  /* Основные фоны */
+  --color-bg-primary: #0f1117;
+  --color-bg-secondary: #161a23;
+  --color-bg-tertiary: #1f2430;
+  --color-bg-card: #1b2030;
+  --color-bg-overlay: #0b0e14;
+
+  /* Текст */
+  --color-text-primary: #e6e8ee;
+  --color-text-secondary: #a8adbd;
+  --color-text-disabled: #5c6270;
+  --color-text-inverse: #ffffff;
+
+  /* Акценты */
+  --color-accent-primary: #7c5cff;
+  --color-accent-secondary: #9b87ff;
+  --color-accent-success: #22c55e;
+  --color-accent-warning: #f59e0b;
+  --color-accent-error: #ef4444;
+  --color-accent-info: #38bdf8;
+
+  /* Границы */
+  --color-border-default: #2a2f3a;
+  --color-border-muted: #1e222d;
+
+  /* Интерактивные элементы */
+  --color-button-primary: #7c5cff;
+  --color-button-primary-hover: #6a4df0;
+  --color-button-secondary: #1f2430;
+  --color-button-secondary-hover: #2a3040;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem;  /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+
+  /* Межстрочные интервалы */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-loose: 1.75;
+
+  --border-radius-none: 0;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-full: 9999px;
+
+  /* Лёгкая тень для карточек */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+
+  /* Стандартная тень */
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.35);
+
+  /* Выраженная тень */
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.4);
+
+  /* Глубокая тень для модальных окон */
+  --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.55);
+
+  /* Внутренняя тень */
+  --shadow-inner: inset 0 2px 6px rgba(0, 0, 0, 0.45);
+
+  --shadow-hover: 0 12px 32px rgba(124, 92, 255, 0.25);
+
+  --space-xxs: 0.25rem;  /* 4px */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;  /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;   /* 24px */
+  --space-xl: 2rem;     /* 32px */
+  --space-2xl: 3rem;    /* 48px */
+  --space-3xl: 4rem;    /* 64px */
+
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+}

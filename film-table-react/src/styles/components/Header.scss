@@ -1,0 +1,30 @@
+.header {
+  padding: var(--space-md);
+  width: 100%;
+  @include flex-between-center-row;
+  border-bottom: 1px solid var(--color-border-default);
+
+  &__logo {
+    font-size: var(--font-size-3xl);
+    color: var(--color-text-primary);
+
+  }
+
+  &-nav {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-xl);
+
+    &__total-films__watch {
+      font-size: var(--font-size-md);
+      color: var(--color-text-primary);
+      font-weight: 600;
+    }
+  }
+}
+
+.open__modal__button {
+  width: 80px;
+}
