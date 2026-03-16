@@ -8,6 +8,7 @@ const FilmsTable = () => {
        filteredFilms,
        toggleIsDone,
        deleteFilm,
+       lastAddedFilmRef,
    } = useContext(FilmsContext);
 
     return (
@@ -35,7 +36,7 @@ const FilmsTable = () => {
                 </tr>
             </thead>
             <tbody>
-            {filteredFilms.map((film) => {
+            {filteredFilms.map((film, index) => {
                 return (
                     <FilmsTableItem
                         {...film}
