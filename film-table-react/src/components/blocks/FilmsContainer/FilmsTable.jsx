@@ -1,4 +1,5 @@
 import FilmsTableItem from "./FilmsTableItem.jsx";
+import {memo} from "react";
 
 const FilmsTable = (props) => {
     const {
@@ -48,4 +49,4 @@ const FilmsTable = (props) => {
     )
 }
 
-export default FilmsTable
+export default memo(FilmsTable);

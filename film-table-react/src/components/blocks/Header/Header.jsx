@@ -6,6 +6,7 @@ const Header = (props) =>  {
         films,
         setSearchQuery,
         searchQuery,
+        doneFilms,
     } = props
 
     return (
@@ -18,6 +19,7 @@ const Header = (props) =>  {
                 films={films}
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
+                doneFilms={doneFilms}
             />
         </header>
     )

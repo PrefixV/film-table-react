@@ -1,7 +1,7 @@
 import "./styles/styles.scss"
 import Header from "./components/blocks/Header/Header.jsx";
 import AddFilmModal from "./components/blocks/Modal/AddFilmModal.jsx";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useMemo, useState} from "react";
 import FilmsTable from "./components/blocks/FilmsContainer/FilmsTable.jsx";
 
 function App() {
@@ -23,58 +23,68 @@ const [films, setFilms] = useState(() => {
     return [];
 });
 
-const toggleIsDone = (id) => {
-    setFilms(
-        films.map((film) => {
-            if(film.id === id) {
-                return {
-                    ...film,
-                    isDone: !film.isDone,
+const toggleIsDone = useCallback(
+    (id) => {
+        setFilms(
+            films.map((film) => {
+                if(film.id === id) {
+                    return {
+                        ...film,
+                        isDone: !film.isDone,
+                    }
                 }
-            }
-            return film;
-        })
-    )
-}
+                return film;
+            })
+        )
+    }
+, [films]);
 
 const [newFilmName, setNewFilmName] = useState("");
 const [newFilmType, setNewFilmType] = useState("");
 const [newFilmSeries, setNewFilmSeries] = useState("");
 const [newFilmSeason, setNewFilmSeason] = useState("");
 
-const addFilm = () => {
-    if(newFilmName.length > 0){
-        const newFilm = {
-            id: crypto?.randomUUID() ?? Date.now().toString(),
-            name: newFilmName,
-            type: newFilmType,
-            series: newFilmSeries,
-            season: newFilmSeason,
-            date: new Date().toLocaleDateString("ru-RU"),
-            isDone: false,
+const addFilm = useCallback(
+    () => {
+        if(newFilmName.length > 0){
+            const newFilm = {
+                id: crypto?.randomUUID() ?? Date.now().toString(),
+                name: newFilmName,
+                type: newFilmType,
+                series: newFilmSeries,
+                season: newFilmSeason,
+                date: new Date().toLocaleDateString("ru-RU"),
+                isDone: false,
+            }
+
+            if(newFilm.season === "" && newFilm.series === ""){
+                newFilm.series = "-"
+                newFilm.season = "-"
+            }
+
+            if(newFilm.type === "") {
+                newFilm.type = "Film"
+            }
+
+            setFilms((prevFilms) => [...prevFilms, newFilm]);
+            setNewFilmName("");
+            setNewFilmType("");
+            setNewFilmSeries("");
+            setNewFilmSeason("");
+            closeModal();
         }
+    }
+, [newFilmSeries, newFilmName, newFilmSeason, newFilmType])
 
-        if(newFilm.season === "" && newFilm.series === ""){
-            newFilm.series = "-"
-            newFilm.season = "-"
+    const deleteFilm = useCallback(
+        (id) => {
+            setFilms(
+                films.filter((film) => {
+                    return film.id !== id;
+                })
+            )
         }
-
-        setFilms(films => [...films, newFilm]);
-        setNewFilmName("");
-        setNewFilmType("");
-        setNewFilmSeries("");
-        setNewFilmSeason("");
-        closeModal();
-    }
-}
-
-    const deleteFilm = (id) => {
-        setFilms(
-            films.filter((film) => {
-                return film.id !== id;
-            })
-        )
-    }
+    ,[films])
 
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -82,10 +92,16 @@ useEffect(() => {
     localStorage.setItem("films", JSON.stringify(films));
 }, [films])
 
-    const filteredFilms = films.filter(({ name, type }) =>
-        name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        type.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredFilms = useMemo(() => {
+        return films.filter(({ name, type }) =>
+            name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            type.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }, [searchQuery, films]);
+
+const doneFilms = useMemo(() => {
+    return  films.filter(({isDone}) => isDone).length
+}, [films]);
 
   return (
     <>
@@ -94,6 +110,7 @@ useEffect(() => {
       films={filteredFilms}
       searchQuery={searchQuery}
       setSearchQuery={setSearchQuery}
+      doneFilms={doneFilms}
       />
         <AddFilmModal
             modal={modal}

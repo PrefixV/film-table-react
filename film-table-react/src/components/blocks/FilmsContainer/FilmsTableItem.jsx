@@ -1,4 +1,5 @@
 import Button from "../../Button.jsx";
+import {memo} from "react";
 
 const FilmsTableItem = (props) => {
     const {
@@ -53,4 +54,4 @@ const FilmsTableItem = (props) => {
     )
 }
 
-export default FilmsTableItem
+export default memo(FilmsTableItem);

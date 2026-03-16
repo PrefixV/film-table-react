@@ -19,4 +19,4 @@ const SearchFilmForm = (props) => {
     )
 }
 
-export default SearchFilmForm
+export default SearchFilmForm;

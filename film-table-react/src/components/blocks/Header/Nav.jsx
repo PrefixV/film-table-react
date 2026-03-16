@@ -7,12 +7,13 @@ const Nav = (props) => {
         films,
         searchQuery,
         setSearchQuery,
+        doneFilms,
     } = props
 
     return (
         <nav className="header-nav">
             <p className="header-nav__total-films__watch">
-                {`Всего просмотренно ${films.filter(({isDone}) => isDone).length} фильмов`}
+                {`Всего просмотренно ${doneFilms} фильмов`}
             </p>
             <SearchFilmForm
             searchQuery={searchQuery}
