@@ -1,8 +1,10 @@
 import Button from "../../Button.jsx";
 import Field from "../../Field.jsx";
 import Select from "../../Select.jsx";
+import {useContext, useState} from "react";
+import  {FilmsContext } from "../../../context/FilmsContext.jsx";
 
-const AddFilmModal = (props) => {
+const AddFilmModal = () => {
     const {
         modal,
         closeModal,
@@ -15,15 +17,27 @@ const AddFilmModal = (props) => {
         newFilmSeries,
         newFilmSeason,
         newFilmName,
-    } = props
+        error,
+        setError,
+    } = useContext(FilmsContext);
+
+    const onInput = (event) => {
+        const {value} = event.target;
+        const clearValue = value.trim();
+        const hasOnlySpaces = value.length > 0 && clearValue.length === 0;
+
+        setNewFilmName(value)
+        setError(hasOnlySpaces ? "Название фильма не может быть пустым" : '');
+    }
+
     return (
         <div className={modal ? "add-film-modal" : "add-film-modal--hidden"}>
             <div className="add-film-modal__header">
                 <h2 className="add-film-modal__header-title">
-                    Add Film
+                    Добавить фильм
                 </h2>
                 <Button
-                    className="add-film-modal__button--close"
+                    className="button--close"
                     type="button"
                     onClick={closeModal}
                 >
@@ -34,34 +48,35 @@ const AddFilmModal = (props) => {
                 <Field
                     className="add-film-modal__film-name"
                     id="film-name"
-                    placeholder="Film Name"
+                    placeholder="Название"
                     value={newFilmName}
-                    onInput={(event) => setNewFilmName(event.target.value)}
+                    onInput={onInput}
+                    error={error}
                 />
                 <Select
                     onChange={(event) => setNewFilmType(event.target.value)}
                     value={newFilmType}
                 >
                     <option value="Film">
-                        Film
+                        Фильм
                     </option>
                     <option value="Serial">
-                        Serial
+                        Сериал
                     </option>
                     <option value="Cartoon">
-                        Cartoon
+                        Мультфильм
                     </option>
                 </Select>
                 {newFilmType === "Serial" && (
                     <>
                         <Field
-                            placeholder="Series"
+                            placeholder="Серия"
                             onInput={(event) => setNewFilmSeries(event.target.value)}
                             value={newFilmSeries}
                         />
 
                         <Field
-                            placeholder="Season"
+                            placeholder="Сезон"
                             onInput={(event) => setNewFilmSeason(event.target.value)}
                             value={newFilmSeason}
                         />
@@ -72,8 +87,9 @@ const AddFilmModal = (props) => {
                 className="add-film-modal__button"
                 type="button"
                 onClick={addFilm}
+                isDisabled={newFilmName.trim().length === 0}
             >
-                Add film
+                Добавить
             </Button>
         </div>
     )

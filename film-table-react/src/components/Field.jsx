@@ -6,9 +6,11 @@ const Field = (props) => {
         value,
         onInput,
         type,
+        error,
     } = props
 
     return (
+        <>
         <input
             className={`field ${className}`}
             id={id}
@@ -17,6 +19,12 @@ const Field = (props) => {
             value={value}
             onInput={onInput}
         />
+    {error && (
+        <span className={`field ${error ? 'is-invalid' : ''}`}>
+            {error}
+        </span>
+    )}
+        </>
     )
 }
 

@@ -1,4 +1,4 @@
-.add-film-modal {
+.add-film-modal, .edit-modal-form {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-.add-film-modal__header {
+.add-film-modal__header, .edit-modal-form__header {
   @include flex-between-center-row;
   width: 100%;
 
@@ -26,7 +26,7 @@
     color: var(--color-text-primary);
   }
 
-  .add-film-modal__button--close {
+  .button--close {
     border-radius: var(--border-radius-full);
     width: 50px;
     height: 50px;
@@ -34,7 +34,7 @@
   }
 }
 
-.add-film-modal__body {
+.add-film-modal__body, .edit-modal-form__body {
   @include flex-center-center-column;
   gap: var(--space-sm);
   width: 100%;
@@ -49,7 +49,7 @@
   }
 }
 
-.add-film-modal--hidden {
+.add-film-modal--hidden, .edit-modal-form--hidden {
   opacity: 0;
   visibility: hidden;
   max-height: 0;

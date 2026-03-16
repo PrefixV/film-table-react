@@ -27,16 +27,24 @@ body {
   transition: var(--transition-fast);
   box-shadow: var(--shadow-sm);
 
-  &:hover {
-    background: var(--color-button-primary-hover);
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-1px);
-    cursor: pointer;
+  &:not(:disabled) {
+    &:hover {
+      background: var(--color-button-primary-hover);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px);
+      cursor: pointer;
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
+    }
   }
 
-  &:active {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
+  &:disabled {
+    background: #4f4f4f;
+    border: 1px solid var(--color-text-inverse);
+    cursor: not-allowed;
   }
 }
 
@@ -51,10 +59,16 @@ body {
   font-size: var(--font-size-md);
   outline: none;
   transition: var(--transition-fast);
+  appearance: none;
 
   &:focus {
     border-color: var(--color-accent-primary);
     box-shadow: 0 0 0 2px rgba(124, 92, 255, 0.2);
+  }
+
+  &.is-invalid {
+    border-color: var(--color-accent-error);
+    font-size: var(--font-size-md);
   }
 }
 
@@ -80,5 +94,12 @@ body {
     border-color: var(--color-accent-primary);
     box-shadow: 0 0 0 2px rgba(124, 92, 255, 0.2);
   }
+}
+
+.empty-films__message {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg) !important;
+  font-weight: 600 !important;
+  padding: var(--space-lg) !important;
 }
 

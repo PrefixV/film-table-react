@@ -1,12 +1,14 @@
 import FilmsTableItem from "./FilmsTableItem.jsx";
-import {memo} from "react";
+import {memo, useContext} from "react";
+import {FilmsContext} from "../../../context/FilmsContext.jsx";
 
-const FilmsTable = (props) => {
-    const {
-        films,
-        deleteFilm,
-        toggleIsDone,
-    } = props
+const FilmsTable = () => {
+   const {
+       films,
+       filteredFilms,
+       toggleIsDone,
+       deleteFilm,
+   } = useContext(FilmsContext);
 
     return (
         <table className="table">
@@ -33,7 +35,7 @@ const FilmsTable = (props) => {
                 </tr>
             </thead>
             <tbody>
-            {films.map((film) => {
+            {filteredFilms.map((film) => {
                 return (
                     <FilmsTableItem
                         {...film}
@@ -44,6 +46,10 @@ const FilmsTable = (props) => {
                     />
                 )
             })}
+
+            {filteredFilms.length === 0 && (
+                <tr><td className="empty-films__message">Нет добавленных фильмов</td></tr>
+            )}
             </tbody>
         </table>
     )

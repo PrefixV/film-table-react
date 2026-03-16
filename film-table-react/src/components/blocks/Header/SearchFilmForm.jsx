@@ -1,16 +1,19 @@
 import Field from "../../Field.jsx";
+import {useContext} from "react";
+import {FilmsContext} from "../../../context/FilmsContext.jsx";
 
-const SearchFilmForm = (props) => {
+const SearchFilmForm = () => {
     const {
         searchQuery,
         setSearchQuery,
-    } = props
+    } = useContext(FilmsContext)
+
     return (
-        <form className="form">
+        <form className="form" onSubmit={(event) => event.preventDefault()}>
             <Field
                 className="search__field"
                 type="search"
-                placeholder="Search film"
+                placeholder="Найти фильм"
                 id="search-field"
                 value={searchQuery}
                 onInput={(event) => setSearchQuery(event.target.value)}

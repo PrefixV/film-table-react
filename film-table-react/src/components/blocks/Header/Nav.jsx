@@ -1,24 +1,20 @@
 import SearchFilmForm from "./SearchFilmForm.jsx";
 import Button from "../../Button.jsx";
+import {useContext} from "react";
+import {FilmsContext} from "../../../context/FilmsContext.jsx";
 
-const Nav = (props) => {
+const Nav = () => {
     const {
         openModal,
-        films,
-        searchQuery,
-        setSearchQuery,
         doneFilms,
-    } = props
+    } = useContext(FilmsContext)
 
     return (
         <nav className="header-nav">
             <p className="header-nav__total-films__watch">
                 {`Всего просмотренно ${doneFilms} фильмов`}
             </p>
-            <SearchFilmForm
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            />
+            <SearchFilmForm />
             <Button
                 className="open__modal__button"
                 type="button"
