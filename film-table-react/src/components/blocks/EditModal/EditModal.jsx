@@ -30,6 +30,9 @@ const EditModal = () => {
                 </Button>
             </div>
             <div className="edit-modal-form__body">
+                <label htmlFor="edit-season" className="edit-modal-form__label">
+                    Сезон
+                </label>
                 <Field
                     className="field__edit-season"
                     type="text"
@@ -38,6 +41,9 @@ const EditModal = () => {
                     value={editSeason || ""}
                     onInput={(event) => setEditSeason(event.target.value)}
                 />
+                <label htmlFor="edit-series" className="edit-modal-form__label">
+                    Серия
+                </label>
                 <Field
                     className="field__edit-series"
                     type="text"

@@ -54,3 +54,8 @@
   visibility: hidden;
   max-height: 0;
 }
+
+.edit-modal-form__label {
+  color: var(--color-text-primary);
+  align-self: flex-start;
+}

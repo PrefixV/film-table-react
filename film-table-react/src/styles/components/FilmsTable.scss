@@ -49,10 +49,16 @@
         gap: var(--space-md);
 
         .button {
-          width: 45px;
-          height: 45px;
+          width: 38px;
+          height: 38px;
+          padding: 0;
+          @include flex-center-center-row;
         }
       }
+    }
+
+    .table-item-done {
+      background: var(--color-bg-done);
     }
   }
 }

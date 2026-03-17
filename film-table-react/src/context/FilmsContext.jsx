@@ -40,6 +40,9 @@ export const FilmsProvider = (props) => {
         saveEditedFilm,
         editingFilmId,
         setEditingFilmId,
+        filterType,
+        setFilterType,
+        filteredByType
     } = useFilms()
 
     return (
@@ -76,6 +79,8 @@ export const FilmsProvider = (props) => {
                 saveEditedFilm,
                 editingFilmId,
                 setEditingFilmId,
+                filterType,
+                setFilterType,
         }}
        >
             {children}

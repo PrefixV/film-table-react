@@ -37,6 +37,9 @@ const useFilms = () => {
     const [newFilmSeries, setNewFilmSeries] = useState("");
     const [newFilmSeason, setNewFilmSeason] = useState("");
 
+    const [filterType, setFilterType] = useState("");
+
+
     const addFilm = useCallback(() => {
 
         if (!newFilmName) return;
@@ -46,7 +49,7 @@ const useFilms = () => {
             type: newFilmType || "Film",
             series: newFilmSeries || "-",
             season: newFilmSeason || "-",
-            date: new Date().toLocaleDateString("ru-RU"),
+            date: new Date().toISOString(),
             isDone: false,
         };
 
@@ -77,11 +80,34 @@ const useFilms = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
     const filteredFilms = useMemo(() => {
-        return films.filter(({ name, type }) =>
-            name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            type?.toLowerCase().includes(searchQuery.toLowerCase())
+        let result = [...films];
+
+        result = result.filter(({ name, type }) =>
+            (name || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (type || "").toLowerCase().includes(searchQuery.toLowerCase())
         );
-    }, [searchQuery, films]);
+
+        if (filterType === "name") {
+            result.sort((a, b) =>
+                (a.name || "").localeCompare(b.name || "")
+            );
+        }
+
+        if (filterType === "type") {
+            result.sort((a, b) =>
+                (a.type || "").localeCompare(b.type || "")
+            );
+        }
+
+        if (filterType === "date") {
+            result.sort((a, b) =>
+                new Date(a.date) - new Date(b.date)
+            );
+        }
+
+        return result;
+
+    }, [searchQuery, films, filterType]);
 
     const doneFilms = useMemo(() => {
         return  films.filter(({isDone}) => isDone).length
@@ -162,6 +188,8 @@ const useFilms = () => {
             saveEditedFilm,
             editingFilmId,
             setEditingFilmId,
+            filterType,
+            setFilterType,
         }
     )
 

@@ -4,11 +4,9 @@ import {FilmsContext} from "../../../context/FilmsContext.jsx";
 
 const FilmsTable = () => {
    const {
-       films,
        filteredFilms,
        toggleIsDone,
        deleteFilm,
-       lastAddedFilmRef,
    } = useContext(FilmsContext);
 
     return (
@@ -36,7 +34,7 @@ const FilmsTable = () => {
                 </tr>
             </thead>
             <tbody>
-            {filteredFilms.map((film, index) => {
+            {filteredFilms.map((film) => {
                 return (
                     <FilmsTableItem
                         {...film}
